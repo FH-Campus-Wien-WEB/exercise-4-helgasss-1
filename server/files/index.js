@@ -88,8 +88,12 @@ function addMovie(imdbID) {
     .then(response => {
       if (response.status === 201) {
         // Task 2.2: Make sure to remove the added movie from the search results to avoid
-        // giving the user the option to add it again.
-    
+        // giving the user the option to add it again - entfernt hinzugefügten Film aus der liste
+        const entryToRemove = document.getElementById(`search-result-${imdbID}`);
+        if (entryToRemove) {
+        entryToRemove.remove();
+      } 
+
         loadMovies();
         updateGenres();
       } else if (response.status === 200) {
@@ -132,10 +136,32 @@ function searchMovies(query) {
     .then(results => {
       const resultsDiv = document.getElementById("searchResults");
       resultsDiv.innerHTML = '';
-
       // Task 2.2: Render the results returned from the server. Make sure to
       // include an "Add" button for each result that calls `addMovie(imdbID)` when clicked.
       // There is a second part to this task, in `addMovie`
+      
+
+if (results.length === 0) {
+    new ElementBuilder("p").text(messages.noResultsFound).appendTo(resultsDiv);
+    return;
+}
+
+results.forEach(movie => {
+    // Wir erstellen einen Container für das Suchergebnis
+    // Wir geben ihm eine ID, damit wir ihn in addMovie() leicht finden und entfernen können
+    const movieEntry = new ElementBuilder("div")
+        .id(`search-result-${movie.imdbID}`)
+        .appendTo(resultsDiv);
+
+    new ElementBuilder("span")
+        .text(`${movie.Title} (${movie.Year}) `)
+        .appendTo(movieEntry);
+
+    new ElementBuilder("button")
+        .text("Add")
+        .click(() => addMovie(movie.imdbID)) // Ruft addMovie mit der ID auf
+        .appendTo(movieEntry);
+});
 
     })
     .catch(error => {

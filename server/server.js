@@ -109,6 +109,37 @@ app.put("/movies/:imdbID", requireLogin, function (req, res) {
     // Task 2.3: Fetch the movie data from OmdbAPI, follow the pattern used further down 
     // in the GET /search endpoint. Implement conversion of the OmdbAPI response to the 
     // movie format used in the frontend. Make sure to handle errors and timeouts properly.
+    const apiKey = process.env.OMDB_API_KEY;
+
+        fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(omdbData => {
+                if (omdbData.Response === "False") {
+                    return res.status(404).json({ message: "Movie not found on OMDb" });
+                }
+
+                // Konvertierung in das interne Format der Applikation
+                const movie = {
+                    imdbID: omdbData.imdbID,
+                    title: omdbData.Title,
+                    year: omdbData.Year,
+                    poster: omdbData.Poster,
+                    // OMDb liefert Genres als String (z.B. "Action, Drama"), wir brauchen ein Array
+                    genres: omdbData.Genre ? omdbData.Genre.split(", ") : []
+                };
+
+                // Speichern im Model für den aktuellen User
+                movieModel.setUserMovie(username, imdbID, movie);
+                res.sendStatus(201); // 201 Created
+            })
+            .catch(error => {
+                console.error("OMDb Fetch Error:", error);
+                res.status(500).json({ message: messages.addMovieFailed });
+            });
+    
   } else {
     movieModel.setUserMovie(username, imdbID, req.body);
     res.sendStatus(200);
@@ -137,11 +168,12 @@ app.get("/genres", requireLogin, function (req, res) {
    a list of the results you obtain. Only include the properties 
    mentioned in the README when sending back the results to the client. */
 app.get("/search", requireLogin, function (req, res) {
-  const username = req.session.user.username;
+  const username = req.session.user.username; // Sicherung durch reqireLogin
   const query = req.query.query;
   if (!query) {
     return res.sendStatus(400);
   }
+ 
 // hier wird der API key über config aus .env aufgerufen
   const url = `http://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${config.omdbApiKey}`;
 
