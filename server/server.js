@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -123,13 +124,19 @@ app.put("/movies/:imdbID", requireLogin, function (req, res) {
 
                 // Konvertierung in das interne Format der Applikation
                 const movie = {
-                    imdbID: omdbData.imdbID,
-                    title: omdbData.Title,
-                    year: omdbData.Year,
-                    poster: omdbData.Poster,
-                    // OMDb liefert Genres als String (z.B. "Action, Drama"), wir brauchen ein Array
-                    genres: omdbData.Genre ? omdbData.Genre.split(", ") : []
-                };
+                imdbID: omdbData.imdbID,
+                Title: omdbData.Title,
+                Released: omdbData.Released, // Neu hinzugefügt
+                Runtime: parseInt(omdbData.Runtime), // Wir wandeln "187 min" in eine Zahl um
+                Genres: omdbData.Genre ? omdbData.Genre.split(", ") : [],
+                Directors: omdbData.Director ? omdbData.Director.split(", ") : [], // Neu hinzugefügt
+                Writers: omdbData.Writer ? omdbData.Writer.split(", ") : [], // Neu hinzugefügt
+                Actors: omdbData.Actors ? omdbData.Actors.split(", ") : [], // Neu hinzugefügt
+                Plot: omdbData.Plot, // Neu hinzugefügt
+                Poster: omdbData.Poster,
+                Metascore: parseInt(omdbData.Metascore) || 0, // Neu hinzugefügt
+                imdbRating: parseFloat(omdbData.imdbRating) || 0 // Neu hinzugefügt
+            };
 
                 // Speichern im Model für den aktuellen User
                 movieModel.setUserMovie(username, imdbID, movie);
@@ -137,7 +144,7 @@ app.put("/movies/:imdbID", requireLogin, function (req, res) {
             })
             .catch(error => {
                 console.error("OMDb Fetch Error:", error);
-                res.status(500).json({ message: messages.addMovieFailed });
+                res.status(500).json({ message: "Add movie failed" });
             });
     
   } else {
@@ -175,6 +182,7 @@ app.get("/search", requireLogin, function (req, res) {
   }
  
 // hier wird der API key über config aus .env aufgerufen
+  console.log("Verwendeter API-Key:", config.omdbApiKey); // zeigt API-Key in der Konsole an
   const url = `http://www.omdbapi.com/?s=${encodeURIComponent(query)}&apikey=${config.omdbApiKey}`;
 
   const controller = new AbortController();

@@ -55,7 +55,7 @@
     },
     "tt0057261": {
       "imdbID": "tt0057261",
-      "Title": "Lord of the Flies ?",
+      "Title": "Lord of the Flies ",
       "Released": "1963-08-12",
       "Runtime": 92,
       "Plot": "Schoolboys marooned on a Pacific island create their own savage civilization.",
@@ -137,6 +137,34 @@
       "Poster": "https://m.media-amazon.com/images/M/MV5BMWY0NWE0ZjUtNjRlOS00ZDViLTgxNTQtMGMwN2FhNDY1YTg2XkEyXkFqcGc@._V1_SX300.jpg",
       "Metascore": 81,
       "imdbRating": 7.2
+    },
+    "tt14824600": {
+      "imdbID": "tt14824600",
+      "Title": "The Lord of the Rings: The War of the Rohirrim",
+      "Released": "13 Dec 2024",
+      "Runtime": 134,
+      "Genres": [
+        "Animation",
+        "Action",
+        "Adventure"
+      ],
+      "Directors": [
+        "Kenji Kamiyama"
+      ],
+      "Writers": [
+        "Jeffrey Addiss",
+        "Will Matthews",
+        "Phoebe Gittins"
+      ],
+      "Actors": [
+        "Brian Cox",
+        "Gaia Wise",
+        "Miranda Otto"
+      ],
+      "Plot": "A sudden attack by Wulf, a clever and traitorous lord of Rohan seeking vengeance for the death of his father, forces Helm Hammerhand, the King of Rohan, and his people to make a daring last stand in the ancient stronghold of the H...",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BOTg4OTgyMDYtMDA0NC00ZjJhLWJiOGMtMjlkM2ZjNTgxNGI0XkEyXkFqcGc@._V1_SX300.jpg",
+      "Metascore": 54,
+      "imdbRating": 6.3
     }
   }
 }

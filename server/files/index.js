@@ -147,20 +147,24 @@ if (results.length === 0) {
 }
 
 results.forEach(movie => {
-    // Wir erstellen einen Container für das Suchergebnis
-    // Wir geben ihm eine ID, damit wir ihn in addMovie() leicht finden und entfernen können
-    const movieEntry = new ElementBuilder("div")
-        .id(`search-result-${movie.imdbID}`)
-        .appendTo(resultsDiv);
+    // Sicherstellen, dass wir Daten haben
+    if (!movie.imdbID) return;
 
-    new ElementBuilder("span")
-        .text(`${movie.Title} (${movie.Year}) `)
-        .appendTo(movieEntry);
+    const movieEntry = document.createElement("div");
+    movieEntry.id = `search-result-${movie.imdbID}`;
+    movieEntry.style.margin = "10px 0"; // Etwas Abstand
 
-    new ElementBuilder("button")
-        .text("Add")
-        .click(() => addMovie(movie.imdbID)) // Ruft addMovie mit der ID auf
-        .appendTo(movieEntry);
+    movieEntry.innerHTML = `
+        <span>${movie.Title} (${movie.Year})</span>
+        <button type="button" class="add-btn" data-id="${movie.imdbID}">Add</button>
+    `;
+
+    resultsDiv.appendChild(movieEntry);
+
+    // Event-Listener manuell hinzufügen
+    movieEntry.querySelector(".add-btn").addEventListener("click", () => {
+        addMovie(movie.imdbID);
+    });
 });
 
     })
