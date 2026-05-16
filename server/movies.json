@@ -79,6 +79,34 @@
         "Tom Chapin",
         "Hugh Edwards"
       ]
+    },
+    "tt0172495": {
+      "imdbID": "tt0172495",
+      "Title": "Gladiator",
+      "Released": "05 May 2000",
+      "Runtime": 155,
+      "Genres": [
+        "Action",
+        "Adventure",
+        "Drama"
+      ],
+      "Directors": [
+        "Ridley Scott"
+      ],
+      "Writers": [
+        "David Franzoni",
+        "John Logan",
+        "William Nicholson"
+      ],
+      "Actors": [
+        "Russell Crowe",
+        "Joaquin Phoenix",
+        "Connie Nielsen"
+      ],
+      "Plot": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BYWQ4YmNjYjEtOWE1Zi00Y2U4LWI4NTAtMTU0MjkxNWQ1ZmJiXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "Metascore": 67,
+      "imdbRating": 8.5
     }
   },
   "jane": {
@@ -138,33 +166,31 @@
       "Metascore": 81,
       "imdbRating": 7.2
     },
-    "tt14824600": {
-      "imdbID": "tt14824600",
-      "Title": "The Lord of the Rings: The War of the Rohirrim",
-      "Released": "13 Dec 2024",
-      "Runtime": 134,
+    "tt0112573": {
+      "imdbID": "tt0112573",
+      "Title": "Braveheart",
+      "Released": "24 May 1995",
+      "Runtime": 178,
       "Genres": [
-        "Animation",
-        "Action",
-        "Adventure"
+        "Biography",
+        "Drama",
+        "War"
       ],
       "Directors": [
-        "Kenji Kamiyama"
+        "Mel Gibson"
       ],
       "Writers": [
-        "Jeffrey Addiss",
-        "Will Matthews",
-        "Phoebe Gittins"
+        "Randall Wallace"
       ],
       "Actors": [
-        "Brian Cox",
-        "Gaia Wise",
-        "Miranda Otto"
+        "Mel Gibson",
+        "Sophie Marceau",
+        "Patrick McGoohan"
       ],
-      "Plot": "A sudden attack by Wulf, a clever and traitorous lord of Rohan seeking vengeance for the death of his father, forces Helm Hammerhand, the King of Rohan, and his people to make a daring last stand in the ancient stronghold of the H...",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BOTg4OTgyMDYtMDA0NC00ZjJhLWJiOGMtMjlkM2ZjNTgxNGI0XkEyXkFqcGc@._V1_SX300.jpg",
-      "Metascore": 54,
-      "imdbRating": 6.3
+      "Plot": "Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England.",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNGMxZDBhNGQtYTZlNi00N2UzLWI4NDEtNmUzNWM2NTdmZDA0XkEyXkFqcGc@._V1_SX300.jpg",
+      "Metascore": 68,
+      "imdbRating": 8.3
     }
   }
 }
